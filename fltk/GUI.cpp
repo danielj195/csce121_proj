@@ -68,7 +68,7 @@ int Menu::attach(Button& b)
 {
     b.width = width;
     b.height = height;
-
+    
     switch(k) {
     case horizontal:
         b.loc = Point(loc.x+offset,loc.y);
