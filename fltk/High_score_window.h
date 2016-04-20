@@ -1,5 +1,5 @@
 #ifndef High_score_WINDOW_GUARD
-#define High_score_GUARD 1 //WINDOW GUARDS NEED TO BE THE SAME!!!!!
+#define High_score_WINDOW_GUARD 1 //WINDOW GUARDS NEED TO BE THE SAME!!!!!
 #include "GUI.h"   
 #include "Graph.h"
 #include "My_Window.h"
@@ -9,11 +9,6 @@
 using namespace Graph_lib;
 
 
-
-/* template<typename T, typename A> T& vector<T,A>::operator[](int n)
-{
-	return elem[n];
-} */
 struct High_score_window : My_Window 
 {
     High_score_window(My_Window* prev_window);//vector<Entry> top_scores);
@@ -60,8 +55,6 @@ private:
 	Out_box name3;
 	Out_box name4;
 	Out_box name5;
-	//Vector_ref<Text> initials;
-	//Vector_ref<Text> scores;
 	
 };
 

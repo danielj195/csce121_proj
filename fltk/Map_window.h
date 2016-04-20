@@ -4,16 +4,16 @@
 #include "std_lib_facilities_4.h"
 #include "GUI.h"   
 #include "Graph.h"
+#include "My_Window.h"
 
 using namespace Graph_lib;
 
 //class Shape;
 
-struct Map_window : Graph_lib::Window ///FIX!!!!!
+struct Map_window : My_Window  
 {
-    Map_window(Point xy, int w, int h, const string& title, int difficulty);
-	int wait_for_button(); // used to display the window and returns state. 
-	//int num_satellites;
+    Map_window(My_Window* prev_window, int difficulty);
+	void draw_sats(int difficulty); //draw satellites
 
 private:
     Button quit_button; // quit button
@@ -39,8 +39,9 @@ private:
 	void down(); //places the score and initials onto the high score 
 	void left(); //places the score and initials onto the high score 
 	void right(); //places the score and initials onto the high score 
-	void menu(); //open menu
-	int state = 1; // closes the window if you click the X at the top
+	void menu();	//open menu
+	
+	//int state = 1;  closes the window if you click the X at the top
 	
 	Text moves;
 	Text score;
@@ -48,7 +49,7 @@ private:
 	Out_box current_score;
 	//Out_box initials;
 	Out_box output_time;
-	Out_box num_moves;
+	//Out_box num_moves;
 	//Vector_ref<Text> initials;
 	//Vector_ref<Text> scores;
 	

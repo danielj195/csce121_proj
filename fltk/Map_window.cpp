@@ -6,8 +6,8 @@ using namespace Graph_lib;
 
 
 
-Map_window::Map_window(Point xy, int w, int h, const string& win_title, int num_satellites) :
-	Window(Point(100,100),1110,600,win_title),
+Map_window::Map_window(My_Window* prev_window, int difficulty) :
+	My_Window(Point(100,100),1110,600,prev_window),// difficulty),
 	quit_button(Point(x_max()-80,20), 60, 40, "Quit", cb_quit),
 	submit_button(Point(x_max()-120,450), 50, 50, "Enter", cb_submit),
 	up_button(Point(x_max()-120,390), 50, 50, "N", cb_up),
@@ -26,15 +26,15 @@ Map_window::Map_window(Point xy, int w, int h, const string& win_title, int num_
 	clock(Point(x_max()-150,250),"Time: "),
 	current_score(Point(x_max()-100,160),70,50,""),
 	//initials(Point(x_max()-140,20),50,50,"init"),
-	output_time(Point(x_max()-100,220),70,50,""),
-	num_moves(Point(x_max()-100,100),50,50,"")
+	output_time(Point(x_max()-100,220),70,50,"")
+	//num_moves(Point(x_max()-100,100),50,50,"")
 	
 	
 
 {
-	for(int i = 0; i < win4->num_satellites; ++i){
+	/* for(int i = 0; i < win4->num_satellites; ++i){
 		satellites.push_back(new Graph_lib::Circle(Point(100*i,100),50));
-	}
+	} */
 	attach(quit_button);
 	attach(submit_button);
 	attach(up_button);
@@ -44,23 +44,20 @@ Map_window::Map_window(Point xy, int w, int h, const string& win_title, int num_
 	attach(sat_menu_button);
 	attach(Map);
 	attach(sat_menu);
-	for(int i = 0; i < win4->num_satellites; ++i){
+	/* for(int i = 0; i < win4->num_satellites; ++i){
 		win4->attach(satellites[i]);
 		win4->redraw();
-	}
+	} */
 	attach(moves);
 	attach(score);
 	attach(clock);
 	attach(current_score);
 	//attach(initials);
 	attach(output_time);
-	attach(num_moves);
+	//attach(num_moves);
 };
 
-/* Vector_ref<Circle> vr;
-vr.push_back(new Graph_lib::Circle{Point{10,10},50});
-attach(vr); */
-//quit button
+
 void Map_window::cb_quit(Address, Address pw) 
 {  
     reference_to<Map_window>(pw).quit();    
@@ -137,9 +134,11 @@ void Map_window::menu() // quits game
 	
 }
 
-int Map_window::wait_for_button() // used to display the window and returns state.   
+void Map_window::draw_sats(int difficulty) // draws satellites
 {
-	show();
-	Fl::run();
-	return state;
+	for(int i = 0; i < difficulty; ++i){
+		satellites.push_back(new Graph_lib::Circle(Point(100*i,100),50));
+		attach(satellites[i]);
+	}
 }
+

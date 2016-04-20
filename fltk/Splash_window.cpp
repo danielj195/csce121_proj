@@ -1,5 +1,6 @@
 //#include "Splash_window.h"
 #include "screens.h"
+
 using namespace Graph_lib;
 
 
@@ -37,9 +38,4 @@ void Splash_window::quit() // sets state to quit and closes window
 	state = 1;
 	hide();
 }
-int Splash_window::wait_for_button() // used to display the window and returns state.   
-{
-	show();
-	Fl::run();
-	return state;
-}
+

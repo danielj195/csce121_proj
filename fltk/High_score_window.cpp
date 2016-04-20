@@ -62,20 +62,6 @@ High_score_window::High_score_window(My_Window* prev_window) ://, vector<Entry> 
 	attach(name3);
 	attach(name4);
 	attach(name5);
-	/*  for(int i = 0; i< top_initials.size()&& i<5; ++i)
-		{
-			initials.push_back(new Text(Point(150,40*i+120), top_initials[i]));
-			attach(initials[i]);
-			//initials[i].set_font(Graph_lib::Font:: what you want);
-			//initials[i].set_font_size(int);
-		}
-	 for(int i = 0; i < top_scores.size()&& i<5; ++i)
-	 {
-		 scores.push_back(new Text(Point(300,40*i+120), to_string(top_scores[i])));
-			attach(scores[i]);
-			//scores[i].set_font(Graph_lib::Font:: what you want);
-			//scores[i].set_font_size(int);
-	 } */
 
 }
 
@@ -87,16 +73,10 @@ void High_score_window::cb_next(Address, Address pw) // button callback for next
 
 void High_score_window::next() // sets state to next and closes window
 {
-	//win4->num_satellites = lvl.get_int();
-	
-	//int a = win4->num_satellites;
-	//win4->redraw();
-	//win4.show();
-	//cout << a << '\n';
-	//state = 0; 
-	//hide();
-	
-	
+	int a = lvl.get_int();
+	Map_window* win = new Map_window(this,a);
+	win->draw_sats(a);
+	win->redraw();
 }
 void High_score_window::cb_quit(Address, Address pw) // button callback for quit
 {  
@@ -120,9 +100,6 @@ void High_score_window::score() //
 	
 	Track_scores data;
 	
-	/* for(int i = 0; i<data.scores.size(); ++i){
-		cout<< data
-	} */
 	
 	data.scores = data.read_entries();
 	data.sort_entries(b,c,data.scores);

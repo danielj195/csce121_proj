@@ -10,7 +10,7 @@ using namespace Graph_lib;
 
 struct How_to_window : My_Window
  {
-    How_to_window( My_window* prev_window );
+    How_to_window( My_Window* prev_window );
 
 	int wait_for_button(); // used to display the window and returns state.   0 means go to next window
 

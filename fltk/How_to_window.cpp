@@ -1,5 +1,6 @@
 #include "How_to_window.h"
-
+#include "screens.h"
+//#include "My_Window.h"
 using namespace Graph_lib;
 
 
@@ -37,8 +38,9 @@ void How_to_window::cb_next(Address, Address pw) // button callback for next
 
 void How_to_window::next() // sets state to next and closes window
 {
-	state = 0; 
-	hide();
+	High_score_window* win = new High_score_window(this);
+	//state = 0; 
+	//hide();
 }
 void How_to_window::cb_quit(Address, Address pw) // button callback for quit
 {  
