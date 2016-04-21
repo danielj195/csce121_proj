@@ -15,7 +15,7 @@ Map_window::Map_window(My_Window* prev_window, int difficulty) :
 	left_button(Point(x_max()-180,450), 50, 50, "W", cb_left),
 	right_button(Point(x_max()-60,450), 50, 50, "E", cb_right),
 	sat_menu_button(Point(x_max()-250,20), 75, 40, "Satellites", cb_menu),
-	Map(Point(10,3),"Maps.gif"),
+	Map(Point(0,0),"Maps.gif"),
 	sat_menu(Point(x_max()-250,20),40,40,Menu::vertical,"satellite"),
 	/* satellites()
 		:new Circle (Point(5,5), 50)
@@ -171,7 +171,7 @@ void Map_window::draw_sats(int difficulty) // draws satellites
 		satellites.push_back(new Satellite{new Circle(Point(x_cord,y_cord),5),1,2,3});
 		satellites[i].x = x_cord;
 		satellites[i].y = y_cord;
-		satellites[i].c->set_fill_color(Color{50+i*16});
+		satellites[i].c->set_fill_color(Color{i});
 		sat_menu.attach(sat_options[i]);
 		attach(*satellites[i].c);
 	}

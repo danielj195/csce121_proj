@@ -20,7 +20,7 @@ High_score_window::High_score_window(My_Window* prev_window) ://, vector<Entry> 
 	fourth(Point(200,325),"4."),
 	fifth(Point(200,400),"5."),
 	input_name(Point(500,350), 50, 50, "Initials"),
-	lvl(Point(500,250), 50, 50, "level(1-8)"),
+	lvl(Point(500,250), 50, 50, "level(2-8)"),
 	//Vector_ref<Out_box> values(20)
 	//score(Point(300,500), 50, 50, "Score"),
 	input_score(Point(500,450), 50, 50,"Score"),
