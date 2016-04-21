@@ -1,5 +1,5 @@
 #ifndef High_score_WINDOW_GUARD
-#define High_score_WINDOW_GUARD 1 //WINDOW GUARDS NEED TO BE THE SAME!!!!!
+#define High_score_WINDOW_GUARD 1 
 #include "GUI.h"   
 #include "Graph.h"
 #include "My_Window.h"
@@ -17,7 +17,6 @@ struct High_score_window : My_Window
 private:
     Button quit_button; // quit button
 	Button next_button; // next button
-	Button next_score_button;  //next score button
 	static void cb_next(Address, Address); // callback for play button
     static void cb_quit(Address, Address);  // callback for the quit button
 	static void cb_score(Address, Address);  // callback for the next score button button
@@ -32,21 +31,16 @@ private:
 	Text third;
 	Text fourth;
 	Text fifth;
-	In_box input_name;
 	In_box  lvl;
-	In_box input_score;
+	
 	
 	public:
-	Out_box score1;
-	Out_box score2;
-	Out_box score3;
-	Out_box score4;
-	Out_box score5;
-	Out_box name1;
-	Out_box name2;
-	Out_box name3;
-	Out_box name4;
-	Out_box name5;
+	In_box input_name;
+	In_box input_score;
+	Button next_score_button;  //next score button
+	void make_boxes();
+	Vector_ref<Out_box> scores;
+	Vector_ref<Out_box> names;
 	
 };
 

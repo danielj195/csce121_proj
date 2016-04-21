@@ -23,19 +23,7 @@ High_score_window::High_score_window(My_Window* prev_window) ://, vector<Entry> 
 	lvl(Point(500,250), 50, 50, "level(2-8)"),
 	//Vector_ref<Out_box> values(20)
 	//score(Point(300,500), 50, 50, "Score"),
-	input_score(Point(500,450), 50, 50,"Score"),
-	score1(Point(300,75), 50, 50, ""),
-	score2(Point(300,150), 50, 50, ""),
-	score3(Point(300,225), 50, 50, ""),
-	score4(Point(300,300), 50, 50, ""),
-	score5(Point(300,375), 50, 50, ""),
-	name1(Point(225,75), 50, 50, ""),
-	name2(Point(225,150), 50, 50, ""),
-	name3(Point(225,225), 50, 50, ""),
-	name4(Point(225,300), 50, 50, ""),
-	name5(Point(225,375), 50, 50, "")
-	
-	//top_scores(5);
+	input_score(Point(500,450), 50, 50,"Score")
 	
 	
 {
@@ -50,21 +38,21 @@ High_score_window::High_score_window(My_Window* prev_window) ://, vector<Entry> 
 	attach(input_name);
 	attach(lvl);
 	attach(next_score_button);
-	//attach(input_score);
+	attach(input_score);
 	Fl_Widget::color(Color::white);
-	attach(score1);
-	attach(score2);
-	attach(score3);
-	attach(score4);
-	attach(score5);
-	attach(name1);
-	attach(name2);
-	attach(name3);
-	attach(name4);
-	attach(name5);
 
 }
 
+
+void High_score_window::make_boxes() // button callback for next
+{  
+    for(int i = 0; i<5; ++i){
+		scores.push_back(new Out_box(Point(300,75 + i*75), 50, 50, ""));
+		names.push_back(new Out_box(Point(225,75 + i*75), 50, 50, ""));
+		attach(scores[i]);
+		attach(names[i]);
+	}
+}
 
 void High_score_window::cb_next(Address, Address pw) // button callback for next
 {  
@@ -74,9 +62,19 @@ void High_score_window::cb_next(Address, Address pw) // button callback for next
 void High_score_window::next() // sets state to next and closes window
 {
 	int a = lvl.get_int();
+	int sat = 1; //default sat number
+	if(a<2){
+		a = 2;
+	}
+	else if(a>8){
+		a = 8;
+	}
 	Map_window* win = new Map_window(this,a);
+	ostringstream ss;
+	ss << 1;
+	win->sat_num.put(ss.str());
 	win->draw_sats(a);
-	//win->redraw();
+	win->redraw();
 }
 void High_score_window::cb_quit(Address, Address pw) // button callback for quit
 {  
@@ -95,65 +93,24 @@ void High_score_window::cb_score(Address, Address pw) // button callback for sco
  void High_score_window::score()  
 {
 	/*
-	string b = input_name.get_string();
-	int c = input_score.get_int();
-	//std::cout << b << "\n" << c
-	
+	High_score_window* win = new High_score_window(this);
+	win->make_boxes();
 	Track_scores data;
-	
-	
 	data.scores = data.read_entries();
-	data.sort_entries(b,c,data.scores);
-	data.output_entries(data.scores);
-	
-	ostringstream ss;
+	//data.sort_entries(b,c,data.scores);
+	//data.output_entries(data.scores);
 	ostringstream ss1;
 	ostringstream ss2;
-	ostringstream ss3;
-	ostringstream ss4;
-	ostringstream ss5;
-	ostringstream ss6;
-	ostringstream ss7;
-	ostringstream ss8;
-	ostringstream ss9;
-	
-	ss << data.scores[0].initial;
-	name1.put(ss.str());
-	
-	ss1 << data.scores[0].score;
-	score1.put(ss1.str());
-	
-	ss2 << data.scores[1].initial;
-	name2.put(ss2.str());
-	
-	ss3 << data.scores[1].score;
-	score2.put(ss3.str());
-	
-	ss4 << data.scores[2].initial;
-	name3.put(ss4.str());
-	
-	ss5 << data.scores[2].score;
-	score3.put(ss5.str());
-	
-	ss6 << data.scores[3].initial;
-	name4.put(ss6.str());
-	
-	ss7 << data.scores[3].score;
-	score4.put(ss7.str());
-	
-	ss8 << data.scores[4].initial;
-	name5.put(ss8.str());
-	
-	ss9 << data.scores[4].score;
-	score5.put(ss9.str());
-	
+	for(int i = 0; i<5; ++i){
+		ss1 << data.scores[i].initial;
+		ss2 << data.scores[i].score;
+		win->names[i].put(ss1.str());
+		win->scores[i].put(ss2.str());
+		ss1.str("");
+		ss2.str("");
+	}
 	redraw();
 	*/
 } 
 
-/* int High_score_window::wait_for_button() // used to display the window and returns state.   
-{
-	show();
-	Fl::run();
-	return state;
-} */
+

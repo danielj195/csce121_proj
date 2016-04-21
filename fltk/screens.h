@@ -5,5 +5,6 @@
 #include "Map_window.h"
 #include "Splash_window.h"
 #include "How_to_window.h"
+#include "Finish_window.h"
 
 #endif

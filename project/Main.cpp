@@ -7,7 +7,6 @@
 int main()
 {
 	Splash_window* win = new Splash_window(nullptr);
-	win->show();
+	//win->show();
 	gui_main();
-
 }

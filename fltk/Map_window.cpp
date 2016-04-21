@@ -4,7 +4,8 @@
 
 using namespace Graph_lib;
 
-
+//image source
+//https://en.wikipedia.org/wiki/Mercator_projection
 
 Map_window::Map_window(My_Window* prev_window, int difficulty) :
 	My_Window(Point(100,100),1110,600,prev_window),// difficulty),
@@ -14,20 +15,19 @@ Map_window::Map_window(My_Window* prev_window, int difficulty) :
 	down_button(Point(x_max()-120,510), 50, 50, "S", cb_down),
 	left_button(Point(x_max()-180,450), 50, 50, "W", cb_left),
 	right_button(Point(x_max()-60,450), 50, 50, "E", cb_right),
-	sat_menu_button(Point(x_max()-250,20), 75, 40, "Satellites", cb_menu),
+	sat_menu_button(Point(x_max()-280,280), 75, 40, "Satellites", cb_menu),
 	Map(Point(0,0),"Maps.gif"),
-	sat_menu(Point(x_max()-250,20),40,40,Menu::vertical,"satellite"),
-	/* satellites()
-		:new Circle (Point(5,5), 50)
-		{}, */
-	moves(Point(x_max()-150,130),"Moves: "),
-	score(Point(x_max()-150,190),"Score: "),
-	clock(Point(x_max()-150,250),"Time: "),
-	current_score(Point(x_max()-100,160),70,50,""),
+	sat_menu(Point(x_max()-280,280),40,40,Menu::vertical,"satellite"),
+	latitude(Point(x_max()-280,95),"Latitude: "),
+	longitude(Point(x_max()-280,170),"Longitude: "),
+	current_score(Point(x_max()-100,160),70,50,"Score: "),
 	//initials(Point(x_max()-140,20),50,50,"init"),
-	output_time(Point(x_max()-100,220),70,50,"")
-	//num_moves(Point(x_max()-100,100),50,50,"")
-	//sat_selector = 0;
+	output_time(Point(x_max()-100,220),70,50,"Time: "),
+	count_moves(Point(x_max()-100,100),50,50,"Moves: "),
+	sat_num(Point(x_max()-100,280),50,50,"Satellite: "),
+	lat_val(Point(x_max()-280,100),70,50,""), //USE WITH LATITUTDE AND LONGITUDE!!
+	long_val(Point(x_max()-280,175),70,50,"")
+	
 
 {
 	
@@ -40,13 +40,15 @@ Map_window::Map_window(My_Window* prev_window, int difficulty) :
 	attach(sat_menu_button);
 	attach(Map);
 	attach(sat_menu);
-	attach(moves);
-	attach(score);
-	attach(clock);
 	attach(current_score);
 	//attach(initials);
 	attach(output_time);
-	//attach(num_moves);
+	attach(count_moves);
+	attach(sat_num);
+	attach(latitude);
+	attach(longitude);
+	attach(lat_val);
+	attach(long_val);
 };
 
 
@@ -55,9 +57,9 @@ void Map_window::cb_quit(Address, Address pw)
     reference_to<Map_window>(pw).quit();    
 }
 
-void Map_window::quit() // quits game
+void Map_window::quit() //proceed to quit game
 {
-	
+	Finish_window* win = new Finish_window(this);
 }
 
 //submit_button
@@ -68,7 +70,13 @@ void Map_window::cb_submit(Address, Address pw)
 
 void Map_window::submit() 
 {
-	++num_moves;
+	if (is_move){
+		++num_moves;
+		ostringstream ss;
+		ss << num_moves;
+		count_moves.put(ss.str());
+	}
+	is_move = 0;
 }
 
 //up_button
@@ -79,6 +87,7 @@ void Map_window::cb_up(Address, Address pw)
 
 void Map_window::up() 
 {
+	is_move = 1;
 	int y = -10;
 	satellites[sat_selector].c->move(0,y);
 	satellites[sat_selector].y += y;
@@ -94,6 +103,7 @@ void Map_window::cb_down(Address, Address pw)
 
 void Map_window::down() 
 {
+	is_move = 1;
 	int y = 10;
 	satellites[sat_selector].c->move(0,y);
 	satellites[sat_selector].y += y;
@@ -109,6 +119,7 @@ void Map_window::cb_left(Address, Address pw)
 
 void Map_window::left() 
 {
+	is_move = 1;
 	int x = -10;
 	satellites[sat_selector].c->move(x,0);
 	satellites[sat_selector].x += x;
@@ -124,6 +135,7 @@ void Map_window::cb_right(Address, Address pw)
 
 void Map_window::right() 
 {
+	is_move = 1;
 	int x = 10;
 	satellites[sat_selector].c->move(x,0);
 	satellites[sat_selector].x += x;
@@ -157,6 +169,9 @@ void Map_window::select(int i)
 	sat_selector = i - 1;
 	sat_menu_button.show();
 	sat_menu.hide();
+	ostringstream ss;
+	ss << i;
+	sat_num.put(ss.str());
 	redraw();
 }
 
@@ -177,7 +192,7 @@ void Map_window::draw_sats(int difficulty) // draws satellites
 	}
 	attach(sat_menu);
 	sat_menu.hide();
-	redraw();
+	//redraw();
 }
 
 void Map_window::wrapper()

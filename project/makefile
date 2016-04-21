@@ -3,7 +3,7 @@ CXXFLAGS = -std=c++14        # common defines
 FLTK   = -lfltk -lfltk_images	# fltk libs
 FLTK_LOCATION = ../fltk/
 
-FLTK_OBJS = Graph.o GUI.o Simple_window.o Window.o Splash_window.o How_to_window.o High_score_window.o Track_scores.o Map_window.o My_Window.o
+FLTK_OBJS = Graph.o GUI.o Simple_window.o Window.o Splash_window.o How_to_window.o High_score_window.o Track_scores.o Map_window.o My_Window.o Finish_window.o
 
 HW_BINS = Main
 
@@ -41,6 +41,9 @@ Map_window.o: $(FLTK_LOCATION)/Map_window.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 	
 My_Window.o: $(FLTK_LOCATION)/My_Window.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+	
+Finish_window.o: $(FLTK_LOCATION)/Finish_window.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 # ==== HOMEWORK FILES ====

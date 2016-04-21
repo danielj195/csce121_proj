@@ -15,6 +15,7 @@ struct Map_window : My_Window
 {
     Map_window(My_Window* prev_window, int difficulty);
 	void draw_sats(int difficulty); //draw satellites
+	Out_box sat_num;
 
 private:
     Button quit_button; // quit button
@@ -46,25 +47,27 @@ private:
 	void menu();	//open menu
 	void select(int);
 	void wrapper();
-	/* void hide_menu();
-	void hide_button(Address _b);
-	void show_menu();
-	void show_button(Address _b); */
 	void return_label(Address flb);
-	int sat_selector;
+	int sat_selector = 0;
 	int num_moves = 0;
+	bool is_move = 0;
 	
-	//int state = 1;  closes the window if you click the X at the top
+	Text latitude;
+	Text longitude;
 	
-	Text moves;
-	Text score;
-	Text clock;
 	Out_box current_score;
-	//Out_box initials;
 	Out_box output_time;
-	//Out_box num_moves;
+	Out_box count_moves;
+	Out_box lat_val;
+	Out_box long_val;
 	//Vector_ref<Text> initials;
 	//Vector_ref<Text> scores;
+	
+	/* ~Map_window()
+		{
+			delete satellites;
+			delete sat_options;
+		} */
 	
 };
 #endif
