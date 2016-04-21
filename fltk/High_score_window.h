@@ -26,15 +26,6 @@ private:
 	void score(); //places the score and initials onto the high score list and organizes
 	int state = 1; // closes the window if you click the X at the top
 	
-	
-	
-	
-	//Entry make_entry(string a, int b);
-	//void sort_scores(vector<Entry> & a);
-	//void get_score(vector<pair<string,int>> top_scores2);
-	//static bool compare_scores(const Entry &a, const Entry &b);
-	
-
 	Text title;
 	Text first;
 	Text second;
@@ -45,6 +36,7 @@ private:
 	In_box  lvl;
 	In_box input_score;
 	
+	public:
 	Out_box score1;
 	Out_box score2;
 	Out_box score3;

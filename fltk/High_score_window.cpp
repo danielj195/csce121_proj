@@ -50,7 +50,7 @@ High_score_window::High_score_window(My_Window* prev_window) ://, vector<Entry> 
 	attach(input_name);
 	attach(lvl);
 	attach(next_score_button);
-	attach(input_score);
+	//attach(input_score);
 	Fl_Widget::color(Color::white);
 	attach(score1);
 	attach(score2);
@@ -76,7 +76,7 @@ void High_score_window::next() // sets state to next and closes window
 	int a = lvl.get_int();
 	Map_window* win = new Map_window(this,a);
 	win->draw_sats(a);
-	win->redraw();
+	//win->redraw();
 }
 void High_score_window::cb_quit(Address, Address pw) // button callback for quit
 {  
@@ -92,8 +92,9 @@ void High_score_window::cb_score(Address, Address pw) // button callback for sco
 {  
     reference_to<High_score_window>(pw).score();    
 }
-void High_score_window::score() // 
+ void High_score_window::score()  
 {
+	/*
 	string b = input_name.get_string();
 	int c = input_score.get_int();
 	//std::cout << b << "\n" << c
@@ -147,11 +148,12 @@ void High_score_window::score() //
 	score5.put(ss9.str());
 	
 	redraw();
-}
+	*/
+} 
 
-int High_score_window::wait_for_button() // used to display the window and returns state.   
+/* int High_score_window::wait_for_button() // used to display the window and returns state.   
 {
 	show();
 	Fl::run();
 	return state;
-}
+} */

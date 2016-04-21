@@ -5,6 +5,7 @@
 #include "GUI.h"   
 #include "Graph.h"
 #include "My_Window.h"
+#include "Satellite.h"
 
 using namespace Graph_lib;
 
@@ -30,9 +31,12 @@ private:
 	static void cb_left(Address, Address); 
 	static void cb_right(Address, Address); 
 	static void cb_menu(Address, Address); //for menu
+	static void cb_menu_buttons(Address, Address);
+	static void cb_return_label(Address, Address);
 	Image Map;
 	Menu sat_menu;
-	Vector_ref<Circle> satellites; //satellites
+	Vector_ref<Satellite> satellites; //satellites
+	Vector_ref<Button> sat_options; //menu selections
 	void quit(); // changes the state to quit and closes the window
 	void submit(); //places the score and initials onto the high score 
 	void up(); //places the score and initials onto the high score 
@@ -40,6 +44,15 @@ private:
 	void left(); //places the score and initials onto the high score 
 	void right(); //places the score and initials onto the high score 
 	void menu();	//open menu
+	void select(int);
+	void wrapper();
+	/* void hide_menu();
+	void hide_button(Address _b);
+	void show_menu();
+	void show_button(Address _b); */
+	void return_label(Address flb);
+	int sat_selector;
+	int num_moves = 0;
 	
 	//int state = 1;  closes the window if you click the X at the top
 	

@@ -1,5 +1,6 @@
 #include "How_to_window.h"
 #include "screens.h"
+#include "Track_scores.h"
 //#include "My_Window.h"
 using namespace Graph_lib;
 
@@ -39,6 +40,56 @@ void How_to_window::cb_next(Address, Address pw) // button callback for next
 void How_to_window::next() // sets state to next and closes window
 {
 	High_score_window* win = new High_score_window(this);
+	
+	Track_scores data;
+	
+	//win->
+	data.scores = data.read_entries();
+	//data.sort_entries(b,c,data.scores);
+	//data.output_entries(data.scores);
+	
+	ostringstream ss;
+	ostringstream ss1;
+	ostringstream ss2;
+	ostringstream ss3;
+	ostringstream ss4;
+	ostringstream ss5;
+	ostringstream ss6;
+	ostringstream ss7;
+	ostringstream ss8;
+	ostringstream ss9;
+	
+	ss << data.scores[0].initial;
+	win->name1.put(ss.str());
+	
+	ss1 << data.scores[0].score;
+	win->score1.put(ss1.str());
+	
+	ss2 << data.scores[1].initial;
+	win->name2.put(ss2.str());
+	
+	ss3 << data.scores[1].score;
+	win->score2.put(ss3.str());
+	
+	ss4 << data.scores[2].initial;
+	win->name3.put(ss4.str());
+	
+	ss5 << data.scores[2].score;
+	win->score3.put(ss5.str());
+	
+	ss6 << data.scores[3].initial;
+	win->name4.put(ss6.str());
+	
+	ss7 << data.scores[3].score;
+	win->score4.put(ss7.str());
+	
+	ss8 << data.scores[4].initial;
+	win->name5.put(ss8.str());
+	
+	ss9 << data.scores[4].score;
+	win->score5.put(ss9.str());
+	
+	redraw();
 	//state = 0; 
 	//hide();
 }
@@ -52,9 +103,10 @@ void How_to_window::quit() // sets state to quit and closes window
 	state = 1;
 	hide();
 }
-int How_to_window::wait_for_button() // used to display the window and returns state.   
+/* int How_to_window::wait_for_button() // used to display the window and returns state.   
 {
 	show();
 	Fl::run();
 	return state;
 }
+ */
