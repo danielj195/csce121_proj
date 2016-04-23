@@ -1,5 +1,3 @@
-
-
 #include "output.h"
 #include "std_lib_facilities_4.h"
 //#include <math.h>
@@ -31,7 +29,18 @@ double x_to_longitude(double x) {
         return (400-x)/400*(-180); //x coordinate converted to degrees (longitude)
 }
 
-double distance_x(double x1, double x2){
+double distance_y(double y1, double y2){
+    double x = y1-y2;
+    double c = 180-(y1-y2);
+    if (x>c)
+        return x*radius_earth;
+    else
+        return c*radius_earth;// returns y distance in meters
+}
+
+double distance_x(double x1, double y1, double x2, double y2){
+    double radius1 = cos(deg_rad(y1))*radius_earth;
+    double radius2 = cos(deg_rad(y2))*radius_earth;
     double w = x1-x2;
     double z = 360-(x1-x2);
     if (w>z)
@@ -40,19 +49,6 @@ double distance_x(double x1, double x2){
         return w;// returns x distance in degrees
 }
 
-double distance_y(double y1, double y2){
-    double x = y1-y2;
-    double c = 180-(y1-y2);
-    if (x>c)
-        return x;
-    else
-        return c;// returns y distance in degrees
-}
-
-
-double latitude_to_y(double lat) {
-    return radius_earth * log(tan(M_PI/4+deg_rad(lat)/2)); //latitude from degrees to meters
-}
-double longitude_to_x(double lon) {
-    return deg_rad(lon)*radius_earth; //longitude from degrees to meters
+double distance(double dx, double dy){
+    return sqrt(dis_x^2+dis_y^2); //distance formula from triangle formed
 }

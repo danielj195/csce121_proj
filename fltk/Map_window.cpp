@@ -1,6 +1,7 @@
 #include "std_lib_facilities_4.h"
 //#include "Map_window.h"
 #include "screens.h"
+#include "output.h"
 
 using namespace Graph_lib;
 
@@ -67,9 +68,28 @@ void Map_window::cb_submit(Address, Address pw)
 {  
     reference_to<Map_window>(pw).submit();
     
+    double shortest_distance = DBL_MAX;
+    for (satellites[i]){
+        double y1 = y_to_latitude(satellites[i].y);
+        double x1 = x_to_longitude(satellites[i].x);
+        for (satellites[j]){
+            if (i==j)
+                continue;
+            double y2 = y_to_latitude(satellites[j].y);
+            double x1 = x_to_longitude(satellites[j].x);
+            double dx = distance_y(y1,y2);
+            double dy = distance_x(x1,y1,x1,y2);
+            if (distance(dx,dy) < shortest_distance)
+                shortest_distance = distance(dx,dy);
+        }
+    }
+    ostringstream ss;
+    ss << shortest_distance;
+    current_score.put(ss.str());
+    redraw();
 }
 
-void Map_window::submit() 
+void Map_window::submit()
 {
 	if (is_move){
 		++num_moves;

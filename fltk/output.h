@@ -9,14 +9,12 @@
 
 using namespace Graph_lib;
 
-class outputs
-{
     double deg_rad(double d);
     double rad_deg(double d)
     double y_to_latitude(double y);
-    void score();
-    void longitude();
-    void latitude();
-    
-};
+    double x_to_longitude(double x, double y);
+    double distance_y(double y1, double y2);
+    double distance_x(double x1, double y1, double x2, double y2);
+    double distance(double dx, double dy);
+
 #endif
