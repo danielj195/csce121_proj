@@ -68,10 +68,12 @@ void Map_window::cb_submit(Address, Address pw)
 {  
     reference_to<Map_window>(pw).submit();
     
-    double shortest_distance = DBL_MAX;
+    double shortest_distance = 9999999999999;
+    
     for (satellites[i]){
         double y1 = y_to_latitude(satellites[i].y);
         double x1 = x_to_longitude(satellites[i].x);
+        
         for (satellites[j]){
             if (i==j)
                 continue;

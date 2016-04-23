@@ -13,9 +13,9 @@ double radius_earth = 6378137;
 double y_to_latitude(double y) {
     double y_new = 0;
     if (y<70)
-        return 1-(y*.0166667)+80;
+        return 1-(y*.1429)+80; //.1429 is 10 degrees divided by 70 pixels
     else if (y>530)
-        return (y-530)*.0166667+80;
+        return (y-530)*.1429+80; // to account for the secant function going to infinity
     else if(y>=300)
         return (1/cos((y-300)/300*(M_PI/2))-1)*(-45);
     else
@@ -33,22 +33,22 @@ double distance_y(double y1, double y2){
     double x = y1-y2;
     double c = 180-(y1-y2);
     if (x>c)
-        return x*radius_earth;
+        return deg_rad(x)*radius_earth; //converts degrees to radians to kilometers
     else
-        return c*radius_earth;// returns y distance in meters
+        return deg_rad(c)*radius_earth;// returns y distance in meters (s = r*theta)
 }
 
 double distance_x(double x1, double y1, double x2, double y2){
     double radius1 = cos(deg_rad(y1))*radius_earth;
-    double radius2 = cos(deg_rad(y2))*radius_earth;
-    double w = x1-x2;
-    double z = 360-(x1-x2);
+    double radius2 = cos(deg_rad(y2))*radius_earth; //accounts for different radii at different y coordiantes
+    double w = deg_rad(x1)*radius1-deg_rad(x2)*radius2; //converting degrees to raidans to kilometers
+    double z = (2*M_PI)*radius_earth-(w); //degrees to radians to kilometers
     if (w>z)
         return z;
     else
-        return w;// returns x distance in degrees
+        return w;// returns x distance in kilometers
 }
 
 double distance(double dx, double dy){
-    return sqrt(dis_x^2+dis_y^2); //distance formula from triangle formed
+    return sqrt(pow(dx,2.0)+pow(dy,2.0)); //distance formula from triangle formed
 }
