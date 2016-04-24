@@ -74,7 +74,8 @@ void Map_window::quit() //proceed to quit game
 //submit_button
 void Map_window::cb_submit(Address, Address pw) 
 {  
-    reference_to<Map_window>(pw).submit();    
+    reference_to<Map_window>(pw).submit();
+    
 }
 
 void Map_window::submit() 
