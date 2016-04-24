@@ -53,21 +53,7 @@ void Track_scores::sort_entries(string a, int b, vector<Entry> &d)
 		}
 	}
 	d.resize(5,val);
-	//d.remove(5);
-	/* d.push_back(c);
-	for(int i=0; i < d.size(); ++i){
-		if(c.score >= d[i].score && i < 5){
-			d[i] = c;
-			break;
-		}
-	} 
-	sort(d.begin(),d.end(),compare_scores); */
 }
-
-/*bool Track_scores::compare_scores(const Entry& a, const Entry& b)
-{
-    return a.score > b.score;
-}*/
 
 void Track_scores::output_entries(vector<Entry> &a)
 {

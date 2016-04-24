@@ -68,6 +68,5 @@ void How_to_window::cb_quit(Address, Address pw) // button callback for quit
 
 void How_to_window::quit() // sets state to quit and closes window
 {
-	state = 1;
 	hide();
 }

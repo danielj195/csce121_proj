@@ -6,16 +6,20 @@
 #include "Graph.h"
 #include "My_Window.h"
 #include "Satellite.h"
+#include <FL/Fl.H>
+#include <FL/Fl_Window.H>
+#include <iostream>
 
 using namespace Graph_lib;
 
-//class Shape;
+
 
 struct Map_window : My_Window  
 {
     Map_window(My_Window* prev_window, int difficulty);
 	void draw_sats(int difficulty); //draw satellites
 	Out_box sat_num;
+	static void Timer_CB(void *data);
 
 private:
     Button quit_button; // quit button
@@ -33,7 +37,7 @@ private:
 	static void cb_right(Address, Address); 
 	static void cb_menu(Address, Address); //for menu
 	static void cb_menu_buttons(Address, Address);
-	static void cb_return_label(Address, Address);
+	
 	Image Map;
 	Menu sat_menu;
 	Vector_ref<Satellite> satellites; //satellites
@@ -47,7 +51,9 @@ private:
 	void menu();	//open menu
 	void select(int);
 	void wrapper();
-	void return_label(Address flb);
+	double Step_size(int);
+	
+	
 	int sat_selector = 0;
 	int num_moves = 0;
 	bool is_move = 0;
@@ -56,18 +62,11 @@ private:
 	Text longitude;
 	
 	Out_box current_score;
-	Out_box output_time;
+	static Out_box output_time;
 	Out_box count_moves;
 	Out_box lat_val;
 	Out_box long_val;
-	//Vector_ref<Text> initials;
-	//Vector_ref<Text> scores;
-	
-	/* ~Map_window()
-		{
-			delete satellites;
-			delete sat_options;
-		} */
+
 	
 };
 #endif
