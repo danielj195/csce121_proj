@@ -32,7 +32,7 @@ double x_to_longitude(double x) {
 double distance_y(double y1, double y2){
     double x = y1-y2;
     double c = 180-(y1-y2);
-    if (x>c)
+    if (x<c)
         return deg_rad(x)*radius_earth; //converts degrees to radians to kilometers
     else
         return deg_rad(c)*radius_earth;// returns y distance in meters (s = r*theta)
@@ -43,7 +43,7 @@ double distance_x(double x1, double y1, double x2, double y2){
     double radius2 = cos(deg_rad(y2))*radius_earth; //accounts for different radii at different y coordiantes
     double w = deg_rad(x1)*radius1-deg_rad(x2)*radius2; //converting degrees to raidans to kilometers
     double z = (2*M_PI)*radius_earth-(w); //degrees to radians to kilometers
-    if (w>z)
+    if (w<z)
         return z;
     else
         return w;// returns x distance in kilometers
