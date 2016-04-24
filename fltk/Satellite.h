@@ -10,9 +10,9 @@ class Satellite
 {
 	public:
 		Circle *c;
-		int x;
-		int y;
-		int num;
+		double x;
+		double y;
+		//int num;
 };
 
 #endif

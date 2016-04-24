@@ -74,7 +74,9 @@ void High_score_window::next() // sets state to next and closes window
 	ss << 1;
 	win->sat_num.put(ss.str());
 	win->draw_sats(a);
+	Fl::add_timeout(1, Map_window::Timer_CB,win);
 	win->redraw();
+	//win->Out_of_time();
 }
 void High_score_window::cb_quit(Address, Address pw) // button callback for quit
 {  
@@ -92,25 +94,26 @@ void High_score_window::cb_score(Address, Address pw) // button callback for sco
 }
  void High_score_window::score()  
 {
-	/*
-	High_score_window* win = new High_score_window(this);
-	win->make_boxes();
 	Track_scores data;
+	
 	data.scores = data.read_entries();
-	//data.sort_entries(b,c,data.scores);
-	//data.output_entries(data.scores);
+	string str_b = input_name.get_string();
+	int int_c = input_score.get_int();
+	data.sort_entries(str_b,int_c,data.scores);
+	data.output_entries(data.scores);
+	data.scores = data.read_entries();
 	ostringstream ss1;
 	ostringstream ss2;
 	for(int i = 0; i<5; ++i){
 		ss1 << data.scores[i].initial;
 		ss2 << data.scores[i].score;
-		win->names[i].put(ss1.str());
-		win->scores[i].put(ss2.str());
+		names[i].put(ss1.str());
+		scores[i].put(ss2.str());
 		ss1.str("");
 		ss2.str("");
 	}
 	redraw();
-	*/
+	
 } 
 
 
