@@ -30,6 +30,9 @@ private:
 	Text t5;
 	Text t6;
 	Text t7;
+	Text t8;
+	Text t9;
+	Text t10;
  };
 
 #endif
