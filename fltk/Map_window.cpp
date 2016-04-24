@@ -81,17 +81,17 @@ void Map_window::cb_submit(Address, Address pw)
     reference_to<Map_window>(pw).submit();
     
     double shortest_distance = 9999999999999;
-    for (int i = 0; i<satellites.sizeof(); i++){
-        double y1 = y_to_latitude(satellites[i].y);
-        double x1 = x_to_longitude(satellites[i].x);
+    for (int i = 0; i<satellites.size(); i++){
+        double lat1 = y_to_latitude(satellites[i].y);
+        double lon1 = x_to_longitude(satellites[i].x);
         
-        for (int j = 0; i<satellites.sizeof(); j++){
+        for (int j = 0; j<satellites.size(); j++){
             if (i==j)
                 continue;
-            double y2 = y_to_latitude(satellites[j].y);
-            double x2 = x_to_longitude(satellites[j].x);
-            if (arc_length(x1,y1,x2,y2) < shortest_distance)
-                shortest_distance = arc_length(x1,y1,x2,y2);
+            double lat2 = y_to_latitude(satellites[j].y);
+            double lon2 = x_to_longitude(satellites[j].x);
+            if (arc_length(lon1,lat1,lon2,lat2) < shortest_distance)
+                shortest_distance = arc_length(lon1,lat1,lon2,lat2);
         }
     }
     ostringstream ss;

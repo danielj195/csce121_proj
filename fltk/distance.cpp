@@ -8,7 +8,7 @@ double deg_rad(double d) {
 double rad_deg(double d) {
     return (d*180)/M_PI;
 }
-double radius_earth = 6378137;
+double radius_earth = 4000; // "assume a radius of 4,000 miles" for the Earth
 double W = 708;
 double H = 600;
 
@@ -31,7 +31,7 @@ double latitude_to_y(double lat) {
 double longitude_to_x(double lon) {
     return deg_rad(lon)*(W/(2*M_PI)); //longitude from degrees to meters
 }
-
+/*
 double distance_x(double x1, double x2){
     double w = x1-x2;
     double z = 360-(x1-x2);
@@ -49,21 +49,16 @@ double distance_y(double y1, double y2){
     else
         return c;// returns y distance in degrees
 }
-
+*/
 double arc_length(double lon1, double lat1, double lon2, double lat2){
     double phi1 = deg_rad(lat1);
-    double phi2 = deg_rad(lat2);
+    double phi2 = deg_rad(lat2); //converting degrees to radians
     double dphi = deg_rad(lat2-lat1);
     double dlam = deg_rad(lon2-lon1);
     double a = sin(dphi/2)*sin(dphi/2)+cos(phi1)*cos(phi2)*sin(dlam/2)*sin(dlam/2);
     double c = 2*atan2(sqrt(a),sqrt(1-a));
-    return radius_earth*c;
+    return radius_earth*c; //above formulas taken from http://www.movable-type.co.uk/scripts/latlong.html
 }
-
-
-
-
-
 
 
 
