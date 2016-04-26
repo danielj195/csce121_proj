@@ -6,7 +6,7 @@ FLTK_LOCATION = ../fltk/
 <<<<<<< HEAD
 FLTK_OBJS = Graph.o GUI.o Simple_window.o Window.o Splash_window.o How_to_window.o High_score_window.o Track_scores.o Map_window.o My_Window.o Finish_window.o output.o
 =======
-FLTK_OBJS = Graph.o GUI.o Simple_window.o Window.o Splash_window.o How_to_window.o High_score_window.o Track_scores.o Map_window.o My_Window.o Finish_window.o distance.o 
+FLTK_OBJS = Graph.o GUI.o Simple_window.o Window.o Splash_window.o How_to_window.o High_score_window.o Track_scores.o Map_window.o My_Window.o Finish_window.o distance.o
 >>>>>>> origin/master
 
 HW_BINS = Main
