@@ -12,7 +12,6 @@ struct Splash_window : My_Window
 {
     Splash_window(My_Window* prev_window);
 
-	//int wait_for_button(); // used to display the window and returns state.   
 
 private:
     Button quit_button; // quit button

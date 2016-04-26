@@ -10,6 +10,7 @@
 using namespace Graph_lib;
 
 
+<<<<<<< HEAD
 double deg_rad(double d);
 double rad_deg(double d);
 double y_to_latitude(double y);
@@ -20,6 +21,16 @@ double arc_length(double lat1, double lon1, double lat2, double lon2);
 void score();
 void longitude();
 void latitude();
+=======
+double deg_rad(double d); //Converts from degrees to radians
+double rad_deg(double d); //Radians to degrees
+double y_to_latitude(double y); //Y coordinate to latitude
+double latitude_to_y(double); //Latitude to y coordiate
+double x_to_longitude(double); //x coordinate to longitude
+double longitude_to_x(double); //longitude to x coordinate
+double arc_length(double lat1, double lon1, double lat2, double lon2); //Finds distance between two satellites
+double min_dist(Vector_ref<Satellite>& v1); //Finds the minimum distance for a group of satellites
+>>>>>>> origin/master
     
 
 #endif
