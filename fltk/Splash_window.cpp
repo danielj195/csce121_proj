@@ -1,4 +1,3 @@
-//#include "Splash_window.h"
 #include "screens.h"
 
 using namespace Graph_lib;
@@ -22,8 +21,6 @@ void Splash_window::cb_play(Address, Address pw) // button callback for play
 
 void Splash_window::play() // sets state to play and closes window
 {
-	//state = 0; 
-	//hide();
 	
 	How_to_window* win = new How_to_window(this); 
 	
@@ -35,7 +32,6 @@ void Splash_window::cb_quit(Address, Address pw) // button callback for quit
 
 void Splash_window::quit() // sets state to quit and closes window
 {
-	state = 1;
 	hide();
 }
 

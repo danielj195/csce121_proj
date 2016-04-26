@@ -12,7 +12,7 @@ class Satellite
 		Circle *c;
 		double x;
 		double y;
-		//int num;
+	
 };
 
 #endif

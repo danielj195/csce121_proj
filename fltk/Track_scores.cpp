@@ -3,7 +3,7 @@
 
 //#include "GUI.h"
 
-//Track_scores::
+
 istream& operator>>(istream& ist, Entry& r){
 	string b;
 	int c;
@@ -13,12 +13,12 @@ istream& operator>>(istream& ist, Entry& r){
 	return ist;
 }
 
-//Track_scores::
+
  ostream& operator<<(ostream& ost, Entry& r){
 	return ost << " " << r.initial << " " << r.score << " \r\n";
 } 
 
-vector<Entry> Track_scores::read_entries()
+vector<Entry> Track_scores::read_entries() //Reads scores from textfile and inputs into vector
 {
 	string iname = "scores.txt";
 	Entry b;
@@ -38,7 +38,7 @@ Entry Track_scores::make_entry(string a, int b)
 	return c;
 }
 
-void Track_scores::sort_entries(string a, int b, vector<Entry> &d)
+void Track_scores::sort_entries(string a, int b, vector<Entry> &d) //Inputs entry and sorts vector
 {
 	Entry c = make_entry(a,b);
 	Entry val = make_entry("-",0);
@@ -55,11 +55,11 @@ void Track_scores::sort_entries(string a, int b, vector<Entry> &d)
 	d.resize(5,val);
 }
 
-void Track_scores::output_entries(vector<Entry> &a)
+void Track_scores::output_entries(vector<Entry> &a) //Outputs scores to textfile
 {
 	string oname = "scores.txt";
 	ofstream ost;
-	ost.open(oname, std::fstream::out | std::fstream::trunc);   //, std::fstream::out | std::fstream::trunc);
+	ost.open(oname, std::fstream::out | std::fstream::trunc);   
 	if(!ost)error("can't open output file ",oname);
 	for(int i = 0; i < a.size(); ++i){
 		ost << a[i];

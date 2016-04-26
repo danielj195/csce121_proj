@@ -17,9 +17,10 @@ using namespace Graph_lib;
 struct Map_window : My_Window  
 {
     Map_window(My_Window* prev_window, int difficulty);
-	void draw_sats(int difficulty); //draw satellites
-	Out_box sat_num;
-	static void Timer_CB(void *data);
+	void draw_sats(int difficulty); //draws satellites on map
+	Out_box sat_num; //Output number of satellites
+	static void Timer_CB(void *data); //Callback for timer
+	int best_score;
 
 private:
     Button quit_button; // quit button
@@ -29,13 +30,13 @@ private:
 	Button left_button;
 	Button right_button;
 	Button sat_menu_button;
-    static void cb_quit(Address, Address);  // callback for the quit button
+    static void cb_quit(Address, Address);  
 	static void cb_submit(Address, Address); 
 	static void cb_up(Address, Address); 
 	static void cb_down(Address, Address); 
 	static void cb_left(Address, Address); 
 	static void cb_right(Address, Address); 
-	static void cb_menu(Address, Address); //for menu
+	static void cb_menu(Address, Address); 
 	static void cb_menu_buttons(Address, Address);
 	
 	Image Map;
@@ -49,24 +50,29 @@ private:
 	void left(); //places the score and initials onto the high score 
 	void right(); //places the score and initials onto the high score 
 	void menu();	//open menu
-	void select(int);
-	void wrapper();
-	double Step_size(int);
+	void select(int);  //Selects a satellite from menu
+	void wrapper(); //Allows satellite to wrap around map
+	double Step_size(int); //Returns the allowable change in position based on number of moves
 	
 	
 	int sat_selector = 0;
 	int num_moves = 0;
-	bool is_move = 0;
+	bool menu_state = 1; //Used to determine if menu is open
+	
+	vector<int> move_state = {1,1,1,1,0}; //Boolean values that determine where a satellite can move
+	int map_w = 708; //map width
+	int map_h = 600; //map height
 	
 	Text latitude;
 	Text longitude;
 	
 	Out_box current_score;
 	static Out_box output_time;
-	Out_box count_moves;
+	Out_box count_moves; //Output number of moves
 	Out_box lat_val;
 	Out_box long_val;
 
 	
 };
+
 #endif
