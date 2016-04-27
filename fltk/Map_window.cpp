@@ -127,6 +127,7 @@ void Map_window::submit()
 	if (move_state[0] == 0 || move_state[1] == 0){
 		++num_moves;
 		if(num_moves >= 50){ //Quit the game if number of moves exceeds 50
+			Fl::remove_timeout(Timer_CB);
 			quit();
 			return;
 		}

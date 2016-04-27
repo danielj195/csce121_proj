@@ -1,7 +1,6 @@
 #include "std_lib_facilities_4.h"
 #include "Track_scores.h"
 
-//#include "GUI.h"
 
 
 istream& operator>>(istream& ist, Entry& r){
